@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK | Personalised AI Solutions </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #22d3ee;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradient */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #0f172a 100%);
+            z-index: -1;
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: move 20s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* Navigation */
+        /* nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        } */
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to bottom, #fff 40%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.4s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Features Section */
+        .section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 41, 59, 0.9);
+            border-color: var(--primary);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--text-dim);
+        }
+
+        /* Portfolio Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 10% 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 3.5rem; }
+            .section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+    <div class="blob"></div>
+
+    <nav>
+        <!-- <div class="logo">A K.</div> -->
+        <div class="logo">
+            <span>A</span><em>K</em>
+          </div>
+          
+          <style>
+          .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 40px;
+          }
+          .logo span {
+            font-weight: 800;
+          }
+          .logo em {
+            font-style: normal;
+            font-weight: 300;
+            margin-left: -4px;
+          }
+          </style>
+          
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Work</a></li>
+            <!-- <li><a href="#contact">Contact</a></li> -->
+            <li><a onclick="toggleModal()">Contact</a></li>
+        </ul>
+        <a href="#" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">Share Your Ideas</a>
+        
+    </nav>
+
+    <section class="hero" id="home">
+        <h1 class="reveal">Design the <br><span style="color: var(--accent)">Future</span> Today.</h1>
+        <p class="reveal">I am a Machine Learning Engineer dedicated to distilling complex algorithms into high-performance, ready-to-use solutions. 
+            I design AI solutions that transform data into real-world value.</p>
+        <div class="reveal">
+            <a href="#services" class="btn btn-primary">Explore My Work</a>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="section-title reveal">
+            <h2>My Expertise</h2>
+            <p style="color: var(--text-dim)">Solutions tailored for the next generation of the web.</p>
+        </div>
+        <div class="grid">
+            <!-- Product 1 -->
+            <div class="card reveal">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h3>AI Powered Financial Analysis</h3>
+                <p>Transforming raw financial data into strategic growth. Our LLM-driven engine analyzes bank statements to deliver bespoke cost-reduction insights.</p>
+                <a href="javascript:void(0)" class="btn btn-primary">Run AI Audit</a>
+            </div>
+    
+            <!-- Product 2 -->
+            <div class="card reveal">
+                <i class="fas fa-arrow-trend-up"></i>
+                <h3>Digital Reach Optimization</h3>
+                <p>Strategic social scaling powered by AI. We analyze your handle's vital stats to deliver custom-tailored insights that boost follower growth.</p>
+                <a href="javascript:void(0)" class="btn btn-primary">Boost My Reach</a>
+            </div>
+    
+            <!-- Product 3 -->
+            <div class="card reveal">
+                <i class="fab fa-chrome"></i>
+                <h3>Bespoke Extensions</h3>
+                <p>Custom-built browser tools designed to your exact specifications. Automate repetitive tasks and add powerful new features to your workflow.</p>
+                <a href="javascript:void(0)" class="btn btn-primary">Build My Tool</a>
+            </div>
+            <!-- Product 4 -->
+            <div class="card reveal">
+                <i class="fas fa-brain"></i>
+                <h3>Prompt Architect</h3>
+                <p>Turn raw ideas into production-ready AI instructions. Describe what you want to build — our AI designs the perfect prompt to make it happen, no matter the domain.</p>
+                <a href="javascript:void(0)" class="btn btn-primary">Generate Prompt</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="work" style="background: rgba(255,255,255,0.02)">
+        <div class="section-title reveal">
+            <h2>Featured Projects</h2>
+        </div>
+        <div class="grid">
+            <!-- Project 1 -->
+            <div class="card reveal" style="padding: 0; min-height: 400px; background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800') center/cover;">
+                <div style="position: absolute; bottom: 0; width: 100%; padding: 2rem; background: linear-gradient(transparent, rgba(0,0,0,0.9));">
+                    <h4>Aether Dash</h4>
+                    <p style="font-size: 0.8rem;">Fintech Dashboard</p>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="card reveal" style="padding: 0; min-height: 400px; background: url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=800') center/cover;">
+                <div style="position: absolute; bottom: 0; width: 100%; padding: 2rem; background: linear-gradient(transparent, rgba(0,0,0,0.9));">
+                    <h4>Nova Crypto</h4>
+                    <p style="font-size: 0.8rem;">Web3 Platform</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT MODAL -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-card">
+            <h2>Let's Connect</h2>
+            <p style="color: var(--text-dim); margin-bottom: 2rem;">Ready to bring your ideas to life?</p>
+            
+            <a href="tel:+918461974848" class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <div class="contact-info-text">
+                    <span>Call or WhatsApp</span>
+                    <strong>+91 8461974848</strong>
+                </div>
+            </a>
+
+            <a href="mailto:Arfazkhank@gmail.com" class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div class="contact-info-text">
+                    <span>Send an Email</span>
+                    <strong>Arfazkhank@gmail.com</strong>
+                </div>
+            </a>
+
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="contact-info-text">
+                    <span>Location</span>
+                    <strong>Bhopal, Madhya Pradesh</strong>
+                </div>
+            </div>
+
+            <div class="close-modal" onclick="toggleModal()">Close Window</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function toggleModal() {
+            document.getElementById('contactModal').classList.toggle('active');
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) toggleModal();
+        }
+
+        // Scroll Reveal
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                let rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) el.classList.add("active");
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/arfaz-khan-2594b6241/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="copyright">&copy; 2025 NEXUS CREATIVE. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        // Initial check
+        reveal();
+
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
